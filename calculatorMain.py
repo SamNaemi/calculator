@@ -1,6 +1,9 @@
 import tkinter as tk
 
 
+
+
+
 class Calculator(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -9,25 +12,17 @@ class Calculator(tk.Tk):
 
         self.display_text = tk.StringVar(value="0")
 
+
         container = tk.Frame(self)
         container.pack(padx=15, pady=15)
 
-        display = tk.Label(
-            container,
-            textvariable=self.display_text,
-            anchor="e",
-            font=("Arial", 30),
-            bg="white",
-            relief="sunken",
-            width=16,
-            padx=10,
-            pady=12,
-        )
+
+        display = tk.Label(container, textvariable=self.display_text, anchor="e", font=("Arial", 30), bg="white", relief="sunken", width=16, padx=10, pady=12,)
         display.grid(row=0, column=0, columnspan=4, sticky="nsew", pady=(0, 10))
+
 
         button_font = ("Arial", 24)
         button_symbol_font = ("Arial", 24)
-
         buttons = [
             ("%", 1, 0, button_font),
             ("CE", 1, 1, button_font),
@@ -40,15 +35,16 @@ class Calculator(tk.Tk):
             ("7", 3, 0, button_font),
             ("8", 3, 1, button_font),
             ("9", 3, 2, button_font),
-            ("×", 3, 3, button_symbol_font),
+            ("x", 3, 3, button_symbol_font),
             ("4", 4, 0, button_font),
             ("5", 4, 1, button_font),
             ("6", 4, 2, button_font),
-            ("−", 4, 3, button_symbol_font),
+            ("-", 4, 3, button_symbol_font),
             ("1", 5, 0, button_font),
             ("2", 5, 1, button_font),
             ("3", 5, 2, button_font),
             ("+", 5, 3, button_font),
+
             ("±", 6, 0, button_symbol_font),
             ("0", 6, 1, button_font),
             (".", 6, 2, button_font),
@@ -60,12 +56,17 @@ class Calculator(tk.Tk):
                 container,
                 text=text,
                 font=font,
-                height=2,
+                height=1,
                 width=4,
                 command=lambda value=text: self.on_button_press(value),
             ).grid(row=row, column=column)
 
+
         self.center_window()
+
+
+
+
 
     def on_button_press(self, value: str) -> None:
         current = self.display_text.get()
@@ -88,6 +89,10 @@ class Calculator(tk.Tk):
 
         self.display_text.set(f"{current}{value}")
 
+
+
+
+
     def center_window(self) -> None:
         self.update_idletasks()  # Ensure size info is correct
 
@@ -101,6 +106,10 @@ class Calculator(tk.Tk):
         y = (screen_height // 2) - (window_height // 2) - 150
 
         self.geometry(f"+{x}+{y}")
+
+
+
+
 
 
 if __name__ == "__main__":
